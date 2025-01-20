@@ -86,16 +86,33 @@
 
         .confetti {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: confetti 1s infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 20;
+            overflow: hidden;
         }
 
-        @keyframes confetti {
-            0% { transform: translate(-50%, -50%) scale(1); }
-            50% { transform: translate(-50%, -50%) scale(1.1); }
-            100% { transform: translate(-50%, -50%) scale(1); }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: fall 2s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(500px) rotate(360deg);
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -118,10 +135,34 @@
         </div>
     </div>
 
+    <div class="confetti" id="confetti"></div>
+
     <script>
         function flipCard() {
             const card = document.querySelector('.card');
             card.classList.toggle('is-flipped');
+
+            if (card.classList.contains('is-flipped')) {
+                launchConfetti();
+            }
+        }
+
+        function launchConfetti() {
+            const confettiContainer = document.getElementById('confetti');
+            for (let i = 0; i < 100; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('confetti-piece');
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.top = Math.random() * -50 + 'px';
+                piece.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+                piece.style.animationDelay = Math.random() * 2 + 's';
+                confettiContainer.appendChild(piece);
+
+                // Remove piece after animation
+                piece.addEventListener('animationend', () => {
+                    piece.remove();
+                });
+            }
         }
     </script>
 </body>
