@@ -11,14 +11,14 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
+            background: #87CEFA; /* Calm blue background */
             font-family: 'Georgia', serif;
             overflow: hidden;
         }
 
         .card {
             width: 350px;
-            height: 400px; /* Increased height for more text space */
+            height: 500px; /* Increased height for more text space */
             perspective: 1000px;
             cursor: pointer;
             position: relative;
@@ -53,20 +53,8 @@
             border: 2px solid #ff5e5e;
         }
 
-        .card-front::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: linear-gradient(45deg, #fff, #f7d7d7);
-            opacity: 0.3;
-        }
-
         .card-back {
-            background: url('https://i.imgur.com/X7ZcW2T.png'); /* A fun cake background image */
-            background-size: cover;
+            background: #ff5e5e; /* Solid color instead of an image */
             color: white;
             transform: rotateY(180deg);
             border: 2px solid #fff;
