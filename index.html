@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Card</title>
+    <title>Fancy Birthday Card</title>
     <style>
         body {
             margin: 0;
@@ -12,14 +12,16 @@
             align-items: center;
             height: 100vh;
             background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
-            font-family: Arial, sans-serif;
+            font-family: 'Georgia', serif;
+            overflow: hidden;
         }
 
         .card {
-            width: 300px;
-            height: 200px;
+            width: 350px;
+            height: 250px;
             perspective: 1000px;
             cursor: pointer;
+            position: relative;
         }
 
         .card-inner {
@@ -38,10 +40,12 @@
             width: 100%;
             height: 100%;
             backface-visibility: hidden;
-            border-radius: 10px;
+            border-radius: 15px;
+            overflow: hidden;
             display: flex;
             justify-content: center;
             align-items: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .card-front {
@@ -49,15 +53,28 @@
             border: 2px solid #ff5e5e;
         }
 
+        .card-front::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: linear-gradient(45deg, #fff, #f7d7d7);
+            opacity: 0.3;
+        }
+
         .card-back {
-            background: #ff5e5e;
+            background: url('https://i.imgur.com/X7ZcW2T.png'); /* A fun cake background image */
+            background-size: cover;
             color: white;
             transform: rotateY(180deg);
             border: 2px solid #fff;
+            text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
         }
 
         h1 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             text-align: center;
             margin: 0;
         }
@@ -65,16 +82,49 @@
         p {
             font-size: 1rem;
         }
+
+        .card-content {
+            z-index: 10;
+            padding: 15px;
+        }
+
+        .long-message {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .confetti {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: confetti 1s infinite;
+        }
+
+        @keyframes confetti {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
     </style>
 </head>
 <body>
     <div class="card" onclick="flipCard()">
         <div class="card-inner">
             <div class="card-front">
-                <h1>Open Me!</h1>
+                <div class="card-content">
+                    <h1>Open Me!</h1>
+                    <p>(Click to reveal your surprise)</p>
+                </div>
             </div>
             <div class="card-back">
-                <h1>Happy Birthday Sophie <3</h1>
+                <div class="card-content">
+                    <h1>Happy Birthday Sophie <3</h1>
+                    <p class="long-message">Happy 16th birthday, Sophie! 🎉✨ I hope your day is as amazing as you are because you truly deserve all the love and happiness in the world. Turning 16 is such a special milestone, and I truly hope you spend it with the people who love and always be there for you. Just know you’re going to make it a year to remember. Also, on the other side, you finally are of age to start driving! I hope you grab for all the opportunities that come your way.<br><br>
+                    I also wanted to let you know how much I appreciate all the memories we’ve shared and how grateful I am for the times we’ve spent together. You’ve always had such a kind and fun spirit, and I’m sure everyone around you feels so lucky to know you. I hope this year brings you nothing but wonderful experiences, new opportunities, and all the things that make you happiest. Here’s to celebrating you today and wishing you all the best for the incredible future ahead. Have an unforgettable birthday! 生日快乐 <3</p>
+                </div>
             </div>
         </div>
     </div>
