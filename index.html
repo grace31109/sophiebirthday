@@ -18,7 +18,7 @@
 
         .card {
             width: 350px;
-            height: 250px;
+            height: 400px; /* Increased height for more text space */
             perspective: 1000px;
             cursor: pointer;
             position: relative;
@@ -74,7 +74,7 @@
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem; /* Adjusted size for better fit */
             text-align: center;
             margin: 0;
         }
@@ -86,12 +86,13 @@
         .card-content {
             z-index: 10;
             padding: 15px;
+            overflow: auto; /* Added scroll for long text */
         }
 
         .long-message {
             font-size: 0.9rem;
             line-height: 1.5;
-            text-align: center;
+            text-align: justify; /* Adjusted alignment for readability */
             margin-top: 10px;
         }
 
