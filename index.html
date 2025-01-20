@@ -18,7 +18,7 @@
 
         .card {
             width: 400px;
-            height: 600px; /* Increased height for more text space */
+            height: 600px; /* Adjusted height */
             perspective: 1000px;
             cursor: pointer;
             position: relative;
@@ -60,21 +60,26 @@
             border: 2px solid #fff;
             text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
             padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
         }
 
         h1 {
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-align: center;
-            margin: 0 0 20px;
+            margin: 0;
         }
 
         p {
-            font-size: 1rem;
-            line-height: 1.5;
+            font-size: 0.8rem; /* Smaller text */
+            line-height: 1.4;
             text-align: justify;
+            overflow-y: auto;
+            height: 60%; /* Constrain text area */
         }
 
-        .confetti, .balloons {
+        .confetti, .balloons, .cake {
             position: absolute;
             top: 0;
             left: 0;
@@ -87,7 +92,6 @@
 
         .confetti-piece, .balloon {
             position: absolute;
-            opacity: 0;
             animation: rise 3s linear forwards;
         }
 
@@ -99,10 +103,29 @@
         }
 
         .balloon {
-            width: 30px;
-            height: 40px;
-            border-radius: 50%;
+            width: 50px; /* Balloon size */
+            height: 70px;
+            border-radius: 50% 50% 50% 50%;
             background-color: hsl(200, 80%, 70%);
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .cake {
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            background: #ffe5b4;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 100px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ff5e5e;
         }
 
         @keyframes fall {
@@ -146,6 +169,7 @@
 
     <div class="confetti" id="confetti"></div>
     <div class="balloons" id="balloons"></div>
+    <div class="cake" id="cake">🎂 Cake!</div>
 
     <script>
         function flipCard() {
@@ -153,13 +177,14 @@
             card.classList.toggle('is-flipped');
 
             if (card.classList.contains('is-flipped')) {
-                launchConfettiAndBalloons();
+                launchCelebration();
             }
         }
 
-        function launchConfettiAndBalloons() {
+        function launchCelebration() {
             const confettiContainer = document.getElementById('confetti');
             const balloonContainer = document.getElementById('balloons');
+            const cake = document.getElementById('cake');
 
             for (let i = 0; i < 100; i++) {
                 const piece = document.createElement('div');
@@ -181,6 +206,9 @@
                 balloonContainer.appendChild(balloon);
                 balloon.addEventListener('animationend', () => balloon.remove());
             }
+
+            cake.style.opacity = 1;
+            setTimeout(() => cake.style.opacity = 0, 3000);
         }
     </script>
 </body>
