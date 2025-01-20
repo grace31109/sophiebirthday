@@ -17,8 +17,8 @@
         }
 
         .card {
-            width: 400px;
-            height: 600px; /* Adjusted height */
+            width: 300px; /* Reduced width for smaller size */
+            height: 450px; /* Adjusted height */
             perspective: 1000px;
             cursor: pointer;
             position: relative;
@@ -59,24 +59,24 @@
             transform: rotateY(180deg);
             border: 2px solid #fff;
             text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
-            padding: 15px;
+            padding: 10px;
             display: flex;
             flex-direction: column;
-            justify-content: space-around;
+            justify-content: space-between;
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 1.5rem; /* Reduced font size */
             text-align: center;
-            margin: 0;
+            margin: 0 0 10px;
         }
 
         p {
-            font-size: 0.8rem; /* Smaller text */
+            font-size: 0.7rem; /* Smaller text for better fit */
             line-height: 1.4;
             text-align: justify;
             overflow-y: auto;
-            height: 60%; /* Constrain text area */
+            height: 70%; /* Adjusted text area */
         }
 
         .confetti, .balloons, .cake {
@@ -96,15 +96,15 @@
         }
 
         .confetti-piece {
-            width: 10px;
-            height: 10px;
+            width: 8px; /* Reduced confetti size */
+            height: 8px;
             background: rgba(255, 255, 255, 0.8);
             animation-name: fall;
         }
 
         .balloon {
-            width: 50px; /* Balloon size */
-            height: 70px;
+            width: 40px; /* Smaller balloon size */
+            height: 60px;
             border-radius: 50% 50% 50% 50%;
             background-color: hsl(200, 80%, 70%);
             border: 2px solid rgba(255, 255, 255, 0.7);
@@ -116,14 +116,14 @@
             bottom: 10%;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px;
-            height: 100px;
+            width: 80px; /* Reduced cake size */
+            height: 80px;
             background: #ffe5b4;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             text-align: center;
-            line-height: 100px;
-            font-size: 1rem;
+            line-height: 80px;
+            font-size: 0.8rem; /* Reduced font size */
             font-weight: bold;
             color: #ff5e5e;
         }
@@ -186,7 +186,7 @@
             const balloonContainer = document.getElementById('balloons');
             const cake = document.getElementById('cake');
 
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 80; i++) { /* Adjusted for smaller screens */
                 const piece = document.createElement('div');
                 piece.classList.add('confetti-piece');
                 piece.style.left = Math.random() * 100 + '%';
@@ -197,7 +197,7 @@
                 piece.addEventListener('animationend', () => piece.remove());
             }
 
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 6; i++) { /* Fewer balloons for smaller space */
                 const balloon = document.createElement('div');
                 balloon.classList.add('balloon');
                 balloon.style.left = Math.random() * 100 + '%';
